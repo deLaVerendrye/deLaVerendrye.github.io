@@ -376,7 +376,9 @@ body {
 }
 .pages .services .box {
   width: 40%;
-  height: 40%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   color: #65647C;
   text-align: center;
   padding: 2%;
