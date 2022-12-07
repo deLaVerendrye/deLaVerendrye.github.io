@@ -1,0 +1,660 @@
+$dark: #65647C;
+$light: #F1D3B3;
+$primary: #C7BCA1;
+$secondary: #8B7E74;
+
+body{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
+    margin: 0;
+    padding: 0;
+    background-color: $secondary;
+}
+
+@mixin paper_background {
+    background-color: #F1D3B3;
+    opacity: 0.8;
+    background-size: 42px 42px;
+    background-image:  repeating-linear-gradient(0deg, #C7BCA1, #C7BCA1 2.1px, #F1D3B3 2.1px, #F1D3B3);
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    height: 5%;
+    align-items: center;
+    background-color: $primary;
+    padding: 0 2ch;
+    box-sizing: border-box;
+    position: relative;
+
+    &:after{
+        position: absolute;
+        content: " ";
+        background-color: $dark;
+        width: 100%;
+        height: 1px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        animation: alternate;
+        animation-name: line_animation;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        transform: scaleX(60%);
+    }
+
+    @keyframes line_animation {
+        from{ transform: scaleX(60%);}
+        to{ transform: scaleX(70%);}
+    }
+
+    .logo{
+        color: $dark;
+    }
+
+    .menu{
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button{
+            color: $dark;
+            margin: 0 5%;
+            transition: 300ms;
+            position: relative;
+            border: none;
+            background-color: rgba($color: #000000, $alpha: 0);
+
+            &:after{
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+                transform: scaleX(0);
+                height: 2px;
+                background-color: $dark;
+                content: " ";
+                transition: 500ms;
+            }
+
+            &:hover{
+                cursor: pointer;
+                &:after{
+                    transform: scaleX(100%);
+                }
+            }
+        }
+    }
+
+    .chat{
+
+        button{
+            background-color: rgba($color: #000000, $alpha: 0);
+            border: 1px solid $dark;
+            border-radius: 10px;
+            padding: 5px 10px;
+            position: relative;
+            transition: 500ms;
+            z-index: 1;
+            color: $dark;
+
+            &:before{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0;
+                opacity: 0;
+                content: " ";
+                height: 100%;
+                background-color: $dark;
+                border: solid 1px $dark;
+                border-radius: 10px;
+                z-index: -1;
+                transition: 500ms;
+            }
+
+            &:hover{
+                cursor: pointer;
+                color: white;
+                &:before{
+                    opacity: 100%;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.pages{
+    width: 90%;
+    height: 90%;
+    background-color: $dark;
+    box-sizing: border-box;
+    position: relative;
+
+    .home{
+        @include paper_background();
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: 500ms;
+        overflow: hidden;
+
+        .right{
+            color: $dark;
+            transform: scale(110%);
+            z-index: 1;
+
+            .buttons{
+                .hireme{
+                    border: none;
+                    padding: 2ch 3ch;
+                    font-weight: 600;
+                    color: $dark;
+                    animation: alternate;
+                    animation-iteration-count: infinite;
+                    animation-name: hiremeBtn;
+                    animation-duration: 1s;
+                    box-shadow: 0 3px 10px 0 rgba($color: #000000, $alpha: 0.2);
+
+                    &:hover{
+                        background-color: $primary;
+                        cursor: pointer;
+                    }
+                }
+
+                @keyframes hiremeBtn{
+                    from{transform: scale(100%);}
+                    to{transform: scale(110%);}
+                }
+
+                .projectsbtn{
+                    background-color: rgba($color: #000000, $alpha: 0);
+                    border: none;
+                    padding: 2ch 3ch;
+                    font-weight: 600;
+                    color: $dark;
+                    transition: 500ms;
+
+                    &:hover{
+                        cursor: pointer;
+                        color: $primary;
+                    }
+                }
+            }
+        }
+
+        .left{
+            width: 50%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+
+            .computer_guy{
+                width: 100%;
+            }
+            
+            .icons{
+                position: absolute;
+                width: 100%;
+                top: 0;
+                left: 0;
+                animation: alternate;
+                animation-iteration-count: infinite;
+                animation-name: icons_animation;
+                animation-duration: 2s;
+                transform: translateY(-20%);
+            }
+
+            @keyframes icons_animation{
+                from{transform: translateY(-10%) translateX(0);}
+                to{transform: translateY(-20%) translateX(2%);}
+            }
+        }
+    }
+
+    .totoro{
+        position: absolute;
+        bottom: -2.3rem;
+        width: 10%;
+        left: 0;
+        pointer-events: none;
+        transform: translateX(-150%);
+        animation: linear;
+        animation-iteration-count: infinite;
+        animation-name: totoro;
+        animation-duration: 7s;
+        z-index: 0;
+        mix-blend-mode: multiply;
+    }
+
+    @keyframes totoro {
+        0%{transform:  translateX(0);}
+        48%{opacity: 100%;}
+        49%{transform: scaleX(1) translateX(600%); opacity: 0;}
+        50%{transform:  scaleX(-1) translateX(-600%);}
+        52%{opacity: 100%;}
+        97%{opacity: 100%;}
+        100%{transform: scaleX(-1); opacity: 0;}
+    }
+
+
+    .projects{
+        width: 0;
+        height: 0;
+        @include paper_background();
+        position: absolute;
+        top: 0;
+        right: 0;
+        transition: 500ms;
+        overflow-x: scroll;
+        display: flex;
+        align-items: center;
+        
+        .project_box{
+            width: 90%;
+            height: 90%;
+            margin: 2%;
+            background-color: $light;
+            box-shadow: 0 3px 10px 0 rgba($color: #000000, $alpha: 0.5);
+            padding: 2%;
+            box-sizing: border-box;
+            text-align: center;
+
+            h3{
+                color: $dark;
+            }
+
+            p{
+                color: $dark;
+            }
+
+            .img_box{
+                width: 100%;
+                height: 80%;
+                overflow: hidden;
+                img{
+                    height: 100%;
+                }
+
+            }
+        }
+
+        &::-webkit-scrollbar{
+            height: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb{
+            background-color: $primary;
+            border-radius: 10px;
+        }
+    }
+    
+    .services{
+        width: 0;
+        height: 0;
+        @include paper_background();
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: 500ms;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        overflow: hidden;
+
+        .box{
+            width: 40%;
+            height: 40%;
+            color: $dark;
+            text-align: center;
+            padding: 2%;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px 0 rgba($color: #000000, $alpha: 0.5);
+            background-color: $light;
+            transition: 500ms;
+            animation: alternate;
+            animation-iteration-count: infinite;
+            animation-name: services;
+            animation-duration: 1s;
+
+            i{
+                font-size: 3rem;
+            }
+
+            &:hover{
+                animation-play-state: paused;
+                transform: scale(110%) !important;
+                cursor: pointer;
+            }
+        }
+
+        @keyframes services {
+            from{transform: rotate(-2deg);
+            }
+            to{transform: rotate(2deg)
+            }
+        }
+    }
+    
+    .contact{
+        width: 0;
+        height: 0;
+        @include paper_background();
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        transition: 500ms;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+
+        .form{
+            position: relative;
+            width: 80%;
+            box-shadow: 0 3px 10px 0 rgba($color: #000000, $alpha: 0.5);
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 2rem;
+            box-sizing: border-box;
+            background-color: $light;
+
+            h1{
+                position: absolute;
+                color: $dark;
+                top: -10%;
+                transform: scale(150%);
+                text-shadow: 0 3px 10px 0 rgba($color: #000000, $alpha: 0.5);
+            }
+            
+            input{
+                width: 80%;
+                margin: .5rem;
+                outline: none;
+                border: none;
+                border-bottom: solid 1px $dark;
+                padding: 1ch;
+                background-color: $light;
+
+                &:focus{
+                background-color: $primary;
+                }
+            }
+
+            textarea{
+                margin: 1rem;
+                resize: none;
+                width: 80%;
+                outline: none;
+                border: solid 1px $dark;
+                padding: 1ch;
+                background-color: $light;
+
+                &:focus{
+                    background-color: $primary;
+                }
+            }
+
+            .contact_list{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+
+                .contact_type{
+                    display: flex;
+                    align-items: center;
+                    text-align: center;
+                    background-color: $primary;
+                    padding: .5rem 1rem;
+                    margin: 0 1rem;
+                    transition: 500ms;
+
+                    i{
+                        color: $dark;
+                        transition: 500ms;
+                    }
+
+                    a{
+                        color: $dark;
+                        margin: 0 1ch;
+                        text-decoration: none;
+                        font-weight: 600;
+                        transition: 500ms;
+                    }
+
+                    &:hover{
+                        background-color: $dark;
+
+                        a, i{
+                            color: $light;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mobile-nav{
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-end;
+    height: 50px;
+    display: none;
+    
+    .m-nav{
+        width: 20%;
+        background-color: $primary;
+        height: 30px;
+        border: none;
+        margin: 0 1px;
+        transition: 500ms;
+        box-shadow: 0 -3px 10px 0 rgba($color: #000000, $alpha: 0.2);
+
+        i{
+            color: $dark;;
+        }
+
+        p{
+            color: $primary;
+            font-weight: 600;
+            font-size: 10px;
+            margin: 3px;
+            display: none;
+        }
+    }
+
+    .active{
+        height: 50px;
+        background-color: $secondary;
+        
+        i{
+            color: $primary;
+        }
+
+        p{
+            display: block;
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 910px) {
+    .navbar{
+        width: 100%;
+        z-index: 1;
+        box-shadow: 0 3px 10px 0 rgba($color: #000000, $alpha: 0.2);
+
+        .menu{
+            display: none;
+        }
+    }
+
+    .mobile-nav{
+        display: flex;
+    }
+
+    .pages{
+        width: 100%;
+        height: 100%;
+        
+        .home{
+            flex-direction: column-reverse;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 2rem;
+            box-sizing: border-box;
+            z-index: 0;
+
+            .right{
+                width:100%;
+                height: 40%;
+                text-align: center;
+            }
+
+            .left{
+                width: 100%;
+            }
+        }
+
+        .projects{
+            flex-direction: column;
+
+            .project_box{
+                height: fit-content;
+
+                .img_box{
+                    height: 400px;
+                }
+            }
+        }
+
+        .services{
+            flex-direction: column;
+            justify-content: start;
+            
+            .box{
+                margin: 1rem;
+                width: 80%;
+                height: fit-content;
+            }
+        }
+
+        .contact{
+            .form{
+                width: 95%;
+
+                h1{
+                    font-size: 5vw;
+                }
+
+                input, textarea{
+                    width: 100%;
+                }
+                .contact_list{
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    
+                    .contact_type{
+                        width: fit-content;
+                        margin: .5rem;
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    .totoro{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar{
+        height: fit-content;
+        padding: 3px;
+        .logo{
+            h2{
+                margin: 0;
+            }
+        }
+    }
+
+    .pages{
+        
+        .home{
+
+            .right{
+                margin-bottom: 30%;
+                h1{
+                    margin: 0;
+                    font-size: 24px;
+                }
+                p{
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .projects{
+            padding-bottom: 15% !important;
+            box-sizing: border-box;
+            &::-webkit-scrollbar{
+                display: none;
+            }
+        }
+
+        .services{
+            overflow: scroll;
+            padding-bottom: 15% !important;
+            padding-top: 5% !important;
+            box-sizing: border-box;
+        }
+
+        .contact{
+            .form{
+                
+                textarea{
+                    height: 5em;
+                }
+            }
+            .contact_list{
+
+                a{
+                    font-size: 12px;
+                }
+
+                i{
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
