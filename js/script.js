@@ -1,5 +1,20 @@
 let current = "HOME";
 
+function setStyle( page, next ){
+
+    if(page.style.display == "flex" && next.style.display == "none"){
+        page.style.display = "none";
+        next.style.display = "flex";
+    }
+    else{
+        page.style.width = "0";
+        page.style.height = "0";
+        page.style.padding = "0";
+        next.style.width = "100%";
+        next.style.height = "100%";
+    }
+}
+
 function Goto(name){
 
     if(current == name){
@@ -11,10 +26,8 @@ function Goto(name){
 
     let page = document.getElementById(current);
     let next = document.getElementById(name);
-    page.style.width = "0";
-    page.style.height = "0";
-    page.style.padding = "0";
-    next.style.width = "100%";
-    next.style.height = "100%";
+
+    setStyle(page, next)
+
     current = name;
 }

@@ -199,6 +199,7 @@ body {
   font-weight: 600;
   color: #65647C;
   transition: 500ms;
+  text-decoration: none;
 }
 .pages .home .right .buttons .projectsbtn:hover {
   cursor: pointer;
